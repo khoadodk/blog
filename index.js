@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
-// const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/authRoutes');
 // const userRoutes = require('./routes/user');
 
 //----------Middlewares-------- ORDER is important
@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(cors());
 
 //Routes
-// app.use('/api', authRoutes);
+app.use('/api', authRoutes);
 // app.use('/api', userRoutes);
 
 //heroku production environment setup
