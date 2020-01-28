@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { APP_NAME } from '../config';
+import Router from 'next/router';
 import Link from 'next/link';
+import { isAuth } from '../helpers/localStogage';
+import { signout } from '../helpers/authFetch';
+
 import {
   Collapse,
   Navbar,
@@ -17,29 +21,56 @@ const Header = props => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <Link href="/">
-          <NavbarBrand>
-            <strong>
-              {APP_NAME}
-              &nbsp;<i class="fab fa-blogger-b"></i>
-            </strong>
-          </NavbarBrand>
-        </Link>
+    <div className="bg-dark">
+      <Navbar expand="md">
+        <NavbarBrand href="/">
+          {APP_NAME}
+          &nbsp;<i className="fab fa-blogger-b"></i>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <Link href="/register">
-                <NavLink>Register</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/signin">
-                <NavLink>Sign In</NavLink>
-              </Link>
-            </NavItem>
+            {!isAuth() && (
+              <React.Fragment>
+                <NavItem>
+                  <Link href="/signin">
+                    <NavLink>Sign In</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link href="/register">
+                    <NavLink>Register</NavLink>
+                  </Link>
+                </NavItem>
+              </React.Fragment>
+            )}
+
+            {isAuth() && isAuth().role === 0 && (
+              <NavItem>
+                <Link href="/user">
+                  <NavLink>{isAuth().name}</NavLink>
+                </Link>
+              </NavItem>
+            )}
+
+            {isAuth() && isAuth().role === 1 && (
+              <NavItem>
+                <Link href="/admin">
+                  <NavLink>{isAuth().name}</NavLink>
+                </Link>
+              </NavItem>
+            )}
+
+            {isAuth() && (
+              <NavItem>
+                <NavLink
+                  className="text-white"
+                  onClick={() => signout(() => Router.replace(`/signin`))}
+                >
+                  Sign Out
+                </NavLink>
+              </NavItem>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
