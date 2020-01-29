@@ -7,11 +7,7 @@ const {
   userSigninValidator
 } = require('../validators/auth');
 //Controller
-const {
-  requireSignin,
-  register,
-  signin
-} = require('../controllers/authController');
+const { register, signin } = require('../controllers/authController');
 
 router.post('/register', userRegisterValidator, runValidation, register);
 router.post('/signin', userSigninValidator, runValidation, signin);

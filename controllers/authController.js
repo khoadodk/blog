@@ -29,12 +29,12 @@ exports.adminMiddleware = (req, res, next) => {
       });
     }
 
-    if (user.role !== '1') {
+    if (user.role !== 1) {
       return res.status(400).json({
-        error: 'Admin resource. Access denied.'
+        error: 'Admin resource. Access denied'
       });
     }
-    //set user object in the name of profile
+
     req.profile = user;
     next();
   });

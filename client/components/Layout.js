@@ -13,12 +13,12 @@ const Layout = ({ children }) => {
           margin: 0;
           padding: 0;
         }
+        a:hover {
+          cursor: pointer;
+        }
         .nav-link,
         .navbar-brand {
           color: white !important;
-        }
-        a:hover {
-          cursor: pointer;
         }
       `}</style>
     </>

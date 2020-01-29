@@ -4,6 +4,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import { isAuth } from '../helpers/localStogage';
 import { signout } from '../helpers/authFetch';
+import { useRouter } from 'next/router';
 
 import {
   Collapse,
@@ -15,10 +16,13 @@ import {
   NavLink
 } from 'reactstrap';
 
-const Header = props => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const router = useRouter();
+  console.log(router.pathname);
 
   return (
     <div className="bg-dark">
@@ -64,7 +68,6 @@ const Header = props => {
             {isAuth() && (
               <NavItem>
                 <NavLink
-                  className="text-white"
                   onClick={() => signout(() => Router.replace(`/signin`))}
                 >
                   Sign Out
