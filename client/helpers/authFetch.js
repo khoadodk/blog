@@ -41,12 +41,4 @@ export const signout = next => {
   removeCookie('token');
   removeLocalStorage('user');
   next();
-
-  return fetch(`${API}/signout`, { method: 'GET' })
-    .then(response => {
-      console.log('Sign Out successfully');
-    })
-    .catch(err => {
-      console.log(err);
-    });
 };

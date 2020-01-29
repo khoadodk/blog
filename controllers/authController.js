@@ -9,6 +9,37 @@ exports.requireSignin = expressJwt({
   secret: process.env.JWT_SECRET
 });
 
+exports.authMiddleware = (req, res, next) => {
+  User.findById({ _id: req.user._id }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: 'The user could not be found'
+      });
+    }
+    req.profile = user;
+    next();
+  });
+};
+
+exports.adminMiddleware = (req, res, next) => {
+  User.findById({ _id: req.user._id }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: 'The user could not be found'
+      });
+    }
+
+    if (user.role !== '1') {
+      return res.status(400).json({
+        error: 'Admin resource. Access denied.'
+      });
+    }
+    //set user object in the name of profile
+    req.profile = user;
+    next();
+  });
+};
+
 exports.register = (req, res) => {
   // 1. Check if user's email exist in DB
   User.findOne({ email: req.body.email }).exec((err, user) => {
@@ -54,12 +85,5 @@ exports.signin = (req, res) => {
 
     const { _id, name, email, role, username } = user;
     return res.json({ token, user: { _id, username, name, email, role } });
-  });
-};
-
-exports.signout = (req, res) => {
-  res.clearCookie('token');
-  res.json({
-    message: 'Sign out successfully!'
   });
 };

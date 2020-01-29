@@ -10,12 +10,10 @@ const {
 const {
   requireSignin,
   register,
-  signin,
-  signout
+  signin
 } = require('../controllers/authController');
 
 router.post('/register', userRegisterValidator, runValidation, register);
 router.post('/signin', userSigninValidator, runValidation, signin);
-router.get('/signout', requireSignin, signout);
 
 module.exports = router;
