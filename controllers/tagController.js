@@ -1,4 +1,4 @@
-const Tag = require('../models/Tag');
+const Tag = require('../models/tag');
 const slugify = require('slugify');
 const { ErrorHandler } = require('../helpers/dbErrorHandler');
 

@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user');
 
 exports.read = (req, res) => {
   //profile is avaiable from the authMiddleware
