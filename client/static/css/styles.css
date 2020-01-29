@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.title {
+  text-align: center;
+  padding: 10px 0;
+}
+a:hover {
+  cursor: pointer;
+}
+.nav-link,
+.navbar-brand {
+  color: white !important;
+}
+
+.active {
+  color: #007bff !important;
+}

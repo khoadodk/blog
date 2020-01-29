@@ -8,6 +8,7 @@ const app = express();
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
+const tagRoutes = require('./routes/tagRoutes');
 
 //----------Middlewares-------- ORDER is important
 app.use(morgan('dev'));
@@ -19,6 +20,7 @@ app.use(cors());
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', tagRoutes);
 
 //heroku production environment setup
 if (process.env.NODE_ENV === 'production') {

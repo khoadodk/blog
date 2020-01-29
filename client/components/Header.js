@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { APP_NAME } from '../config';
 import Router from 'next/router';
 import Link from 'next/link';
+import NProgress from 'nprogress';
 import { isAuth } from '../helpers/localStogage';
 import { signout } from '../helpers/authFetch';
 import { useRouter } from 'next/router';
@@ -16,13 +17,26 @@ import {
   NavLink
 } from 'reactstrap';
 
+//show progress bar when switching route
+if (typeof window !== 'undefined') {
+  NProgress.configure({ showSpinner: false });
+  Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+  });
+  Router.events.on('routeChangeComplete', () => {
+    NProgress.done();
+  });
+  Router.events.on('routeChangeError', () => {
+    NProgress.done();
+  });
+}
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   const router = useRouter();
-  console.log(router.pathname);
 
   return (
     <div className="bg-dark">
@@ -31,19 +45,27 @@ const Header = () => {
           {APP_NAME}
           &nbsp;<i className="fab fa-blogger-b"></i>
         </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler onClick={toggle} className="navbar-dark" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             {!isAuth() && (
               <React.Fragment>
                 <NavItem>
                   <Link href="/signin">
-                    <NavLink>Sign In</NavLink>
+                    <NavLink
+                      className={router.pathname == '/signin' ? 'active' : ''}
+                    >
+                      Sign In
+                    </NavLink>
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link href="/register">
-                    <NavLink>Register</NavLink>
+                    <NavLink
+                      className={router.pathname == '/register' ? 'active' : ''}
+                    >
+                      Register
+                    </NavLink>
                   </Link>
                 </NavItem>
               </React.Fragment>
@@ -52,7 +74,11 @@ const Header = () => {
             {isAuth() && isAuth().role === 0 && (
               <NavItem>
                 <Link href="/user">
-                  <NavLink>{isAuth().name}</NavLink>
+                  <NavLink
+                    className={router.pathname == '/user' ? 'active' : ''}
+                  >
+                    {isAuth().name}
+                  </NavLink>
                 </Link>
               </NavItem>
             )}
@@ -60,7 +86,11 @@ const Header = () => {
             {isAuth() && isAuth().role === 1 && (
               <NavItem>
                 <Link href="/admin">
-                  <NavLink>{isAuth().name}</NavLink>
+                  <NavLink
+                    className={router.pathname == '/admin' ? 'active' : ''}
+                  >
+                    {isAuth().name}
+                  </NavLink>
                 </Link>
               </NavItem>
             )}

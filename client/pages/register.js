@@ -4,7 +4,7 @@ import RegisterComponent from '../components/RegisterComponent';
 const Register = () => {
   return (
     <Layout>
-      <h1 className="text-center pt-4 pb-4">Register</h1>
+      <h1 className="title">Register</h1>
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <RegisterComponent />
