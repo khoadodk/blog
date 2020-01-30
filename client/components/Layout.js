@@ -3,9 +3,12 @@ import Footer from './Footer';
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
+      <div className="sticky-top">
+        <Header />
+      </div>
+
       {children}
-      <div className="fixed-bottom">
+      <div className="footer">
         <Footer />
       </div>
     </>

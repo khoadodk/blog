@@ -1,6 +1,18 @@
 body {
   margin: 0;
-  padding: 0;
+  padding-bottom: 100px;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}
+.featured-image {
+  width: 100vw;
+  max-height: 100vh;
 }
 .title {
   text-align: center;

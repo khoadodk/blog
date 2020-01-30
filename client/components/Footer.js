@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="bg-dark">
+    <footer className="bg-dark p-3">
       <div className="container-fluid text-white">
         <div className="row">
           <div className="col-6">
-            <p className="mb-0 p-2">
+            <p className="mb-0 ">
               Copyright &copy; 2020 All Rights Reserved by Khoa Do
             </p>
           </div>

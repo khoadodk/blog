@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getCookie } from '../helpers/localStogage';
-import { create, getTags, removeTag } from '../helpers/TagFetch';
+import { create, getTags, removeTag } from '../helpers/tagsFetch';
 
 const Tag = () => {
   const [values, setValues] = useState({

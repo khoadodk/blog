@@ -1,6 +1,6 @@
-import Layout from '../../../components/Layout';
-import AdminRoute from '../../../components/AdminRoute';
-import BlogCreate from '../../../components/BlogCreate';
+import Layout from '../../components/Layout';
+import AdminRoute from '../../components/AdminRoute';
+import BlogCreate from '../../components/BlogCreate';
 
 const Blog = () => {
   return (

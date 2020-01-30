@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { withRouter } from 'next/router';
 import { getCookie, isAuth } from '../helpers/localStogage';
 import { getCategories } from '../helpers/categoryFetch';
-import { getTags } from '../helpers/tagFetch';
+import { getTags } from '../helpers/tagsFetch';
 import { create } from '../helpers/blogFetch';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../node_modules/react-quill/dist/quill.snow.css';
@@ -85,7 +85,7 @@ const BlogCreate = ({ router }) => {
 
   const handleChange = name => e => {
     //check if the name is photo
-    const value = name === 'photo' ? e.taget.files[0] : e.target.value;
+    const value = name === 'photo' ? e.target.files[0] : e.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value, formData, error: '' });
   };
@@ -228,12 +228,13 @@ const BlogCreate = ({ router }) => {
             <hr />
             <small className="text-muted">Max size 1 Mb</small>
             <label htmlFor="" className="btn btn-outline-info">
-              Upload image &nbsp;
+              Upload image
               <input
+                className="text-primary"
+                onChange={handleChange('photo')}
                 type="file"
+                name="photo"
                 accept="image/*"
-                onChange={handleChange}
-                hidden
               />
             </label>
           </div>
