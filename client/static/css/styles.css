@@ -17,3 +17,8 @@ a:hover {
 .active {
   color: #007bff !important;
 }
+
+/* Blog body area */
+.ql-editor {
+  min-height: 250px;
+}
