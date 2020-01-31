@@ -174,7 +174,7 @@ exports.remove = (req, res) => {
       });
     }
     res.json({
-      message: 'Blog deleted successfully'
+      message: 'Blog is deleted successfully'
     });
   });
 };
@@ -200,6 +200,7 @@ exports.update = (req, res) => {
         });
       }
 
+      //Keep the slug for SEO, then merge the updated fields to the oldBlog
       let slugBeforeMerge = oldBlog.slug;
       oldBlog = _.merge(oldBlog, fields);
       oldBlog.slug = slugBeforeMerge;
@@ -207,7 +208,7 @@ exports.update = (req, res) => {
       const { body, desc, categories, tags } = fields;
 
       if (body) {
-        oldBlog.excerpt = smartTrim(body, 320, ' ', ' ...');
+        oldBlog.excerpt = stripHtml(body.substring(0, 160));
         oldBlog.desc = stripHtml(body.substring(0, 160));
       }
 
@@ -235,7 +236,7 @@ exports.update = (req, res) => {
             error: errorHandler(err)
           });
         }
-        // result.photo = undefined;
+        result.photo = undefined;
         res.json(result);
       });
     });
@@ -254,5 +255,22 @@ exports.photo = (req, res) => {
       }
       res.set('Content-Type', blog.photo.contentType);
       return res.send(blog.photo.data);
+    });
+};
+
+exports.listRelated = (req, res) => {
+  let limit = req.body.limit ? parseInt(req.body.limit) : 3;
+  const { _id, categories } = req.body.blog;
+
+  Blog.find({ _id: { $ne: _id }, categories: { $in: categories } })
+    .limit(limit)
+    .populate('postedBy', '_id name profile')
+    .select('title slug excerpt postedBy createdAt updatedAt')
+    .exec((err, blogs) => {
+      if (err)
+        return res.status(400).json({
+          error: 'Blog is not found'
+        });
+      res.json(blogs);
     });
 };

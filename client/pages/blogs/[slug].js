@@ -1,13 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout from '../../components/Layout';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import { singleBlog } from '../../helpers/blogFetch';
+import { singleBlog, listRelated } from '../../helpers/blogFetch';
+import Layout from '../../components/Layout';
+import SmallCard from '../../components/Blog/SmallCard';
 
 const SingleBlog = ({ blog, query }) => {
+  const [related, setRelated] = useState([]);
+
+  useEffect(() => {
+    listRelated({ blog }).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setRelated(data);
+      }
+    });
+  }, []);
+
   // for SEO
   const head = () => (
     <Head>
@@ -49,6 +62,15 @@ const SingleBlog = ({ blog, query }) => {
           {e.name}
         </a>
       </Link>
+    ));
+
+  const showRelatedBlogs = () =>
+    related.map(blog => (
+      <div className="col-md-4" key={blog._id}>
+        <article>
+          <SmallCard blog={blog} />
+        </article>
+      </div>
     ));
 
   return (
@@ -99,6 +121,7 @@ const SingleBlog = ({ blog, query }) => {
               {/* Realated Blogs */}
               <div className="container pb-5 pt-5">
                 <h4 className="text-center h2">Related Blogs</h4>
+                <div>{showRelatedBlogs()}</div>
               </div>
             </div>
           </article>
