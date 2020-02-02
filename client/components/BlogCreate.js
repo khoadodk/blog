@@ -7,6 +7,7 @@ import { getCookie, isAuth } from '../helpers/localStogage';
 import { getCategories } from '../helpers/categoryFetch';
 import { getTags } from '../helpers/tagsFetch';
 import { create } from '../helpers/blogFetch';
+import { QuillModules, QuillFormats } from '../helpers/quill';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../node_modules/react-quill/dist/quill.snow.css';
 
@@ -122,8 +123,8 @@ const BlogCreate = ({ router }) => {
         </div>
         <div className="form-group">
           <ReactQuill
-            modules={BlogCreate.modules}
-            formats={BlogCreate.formats}
+            modules={QuillModules}
+            formats={QuillFormats}
             value={body}
             placeholder="Write your idea"
             onChange={handleBody}
@@ -227,7 +228,7 @@ const BlogCreate = ({ router }) => {
             <h5>Featured Image</h5>
             <hr />
             <small className="text-muted">Max size 1 Mb</small>
-            <label htmlFor="" className="btn btn-outline-info">
+            <label className="btn btn-outline-info">
               Upload image
               <input
                 className="text-primary"
@@ -235,6 +236,7 @@ const BlogCreate = ({ router }) => {
                 type="file"
                 name="photo"
                 accept="image/*"
+                hidden
               />
             </label>
           </div>
@@ -256,35 +258,5 @@ const BlogCreate = ({ router }) => {
     </div>
   );
 };
-
-//ReactQuill setup
-BlogCreate.modules = {
-  toolbar: [
-    [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
-    [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    ['link', 'image', 'video'],
-    ['clean'],
-    ['code-block']
-  ]
-};
-
-BlogCreate.formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'link',
-  'image',
-  'video',
-  'code-block'
-];
 
 export default withRouter(BlogCreate);

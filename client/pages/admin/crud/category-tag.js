@@ -1,7 +1,7 @@
-import Layout from '../../components/Layout';
-import AdminRoute from '../../components/AdminRoute';
-import Category from '../../components/Category';
-import Tag from '../../components/Tag';
+import Layout from '../../../components/Layout';
+import AdminRoute from '../../../components/AdminRoute';
+import Category from '../../../components/Category';
+import Tag from '../../../components/Tag';
 
 const CategoryTag = () => {
   return (
