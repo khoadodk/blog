@@ -51,7 +51,11 @@ const Header = () => {
             <React.Fragment>
               <NavItem>
                 <Link href="/blogs">
-                  <NavLink>Blogs</NavLink>
+                  <NavLink
+                    className={router.pathname == '/blogs' ? 'active' : ''}
+                  >
+                    Blogs
+                  </NavLink>
                 </Link>
               </NavItem>
             </React.Fragment>

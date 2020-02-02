@@ -259,7 +259,7 @@ const BlogUpdate = ({ router }) => {
               <small className="text-muted">Max size: 1mb</small>
               <br />
               <label className="btn btn-outline-info">
-                Upload featured image
+                Upload Image
                 <input
                   onChange={handleChange('photo')}
                   type="file"

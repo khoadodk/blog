@@ -12,9 +12,7 @@ const AdminPage = () => {
             <div className="col-md-4">
               <ul className="list-group">
                 <li className="list-group-item">
-                  <Link href="/admin/crud/blog">
-                    <a>Create Blogs</a>
-                  </Link>
+                  <a href="/admin/crud/blog">Create Blogs</a>
                 </li>
                 <li className="list-group-item">
                   <Link href="/admin/crud/blogs">
