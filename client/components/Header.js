@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import { isAuth } from '../helpers/localStogage';
 import { signout } from '../helpers/authFetch';
 import { useRouter } from 'next/router';
+import Search from './Search';
 
 import {
   Collapse,
@@ -39,87 +40,92 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-dark">
-      <Navbar expand="md">
-        <NavbarBrand href="/">
-          {APP_NAME}
-          &nbsp;<i className="fab fa-blogger-b"></i>
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} className="navbar-dark" />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <React.Fragment>
-              <NavItem>
-                <Link href="/blogs">
-                  <NavLink
-                    className={router.pathname == '/blogs' ? 'active' : ''}
-                  >
-                    Blogs
-                  </NavLink>
-                </Link>
-              </NavItem>
-            </React.Fragment>
-
-            {!isAuth() && (
+    <>
+      <div className="bg-dark">
+        <Navbar expand="md">
+          <NavbarBrand href="/">
+            {APP_NAME}
+            &nbsp;<i className="fab fa-blogger-b"></i>
+          </NavbarBrand>
+          <NavbarToggler onClick={toggle} className="navbar-dark" />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="ml-auto" navbar>
               <React.Fragment>
                 <NavItem>
-                  <Link href="/signin">
+                  <Link href="/blogs">
                     <NavLink
-                      className={router.pathname == '/signin' ? 'active' : ''}
+                      className={router.pathname == '/blogs' ? 'active' : ''}
                     >
-                      Sign In
-                    </NavLink>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="/register">
-                    <NavLink
-                      className={router.pathname == '/register' ? 'active' : ''}
-                    >
-                      Register
+                      Blogs
                     </NavLink>
                   </Link>
                 </NavItem>
               </React.Fragment>
-            )}
 
-            {isAuth() && isAuth().role === 0 && (
-              <NavItem>
-                <Link href="/user">
+              {!isAuth() && (
+                <React.Fragment>
+                  <NavItem>
+                    <Link href="/signin">
+                      <NavLink
+                        className={router.pathname == '/signin' ? 'active' : ''}
+                      >
+                        Sign In
+                      </NavLink>
+                    </Link>
+                  </NavItem>
+                  <NavItem>
+                    <Link href="/register">
+                      <NavLink
+                        className={
+                          router.pathname == '/register' ? 'active' : ''
+                        }
+                      >
+                        Register
+                      </NavLink>
+                    </Link>
+                  </NavItem>
+                </React.Fragment>
+              )}
+
+              {isAuth() && isAuth().role === 0 && (
+                <NavItem>
+                  <Link href="/user">
+                    <NavLink
+                      className={router.pathname == '/user' ? 'active' : ''}
+                    >
+                      {isAuth().name}
+                    </NavLink>
+                  </Link>
+                </NavItem>
+              )}
+
+              {isAuth() && isAuth().role === 1 && (
+                <NavItem>
+                  <Link href="/admin">
+                    <NavLink
+                      className={router.pathname == '/admin' ? 'active' : ''}
+                    >
+                      {isAuth().name}
+                    </NavLink>
+                  </Link>
+                </NavItem>
+              )}
+
+              {isAuth() && (
+                <NavItem>
                   <NavLink
-                    className={router.pathname == '/user' ? 'active' : ''}
+                    onClick={() => signout(() => Router.replace(`/signin`))}
                   >
-                    {isAuth().name}
+                    <i className="fa fa-sign-out-alt"></i>
                   </NavLink>
-                </Link>
-              </NavItem>
-            )}
-
-            {isAuth() && isAuth().role === 1 && (
-              <NavItem>
-                <Link href="/admin">
-                  <NavLink
-                    className={router.pathname == '/admin' ? 'active' : ''}
-                  >
-                    {isAuth().name}
-                  </NavLink>
-                </Link>
-              </NavItem>
-            )}
-
-            {isAuth() && (
-              <NavItem>
-                <NavLink
-                  onClick={() => signout(() => Router.replace(`/signin`))}
-                >
-                  Sign Out
-                </NavLink>
-              </NavItem>
-            )}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+                </NavItem>
+              )}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+      <Search />
+    </>
   );
 };
 
