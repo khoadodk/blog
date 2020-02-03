@@ -5,6 +5,8 @@ import { listBlogWithCatAndTags } from '../../helpers/blogFetch';
 
 import Card from '../../components/Blog/Card';
 
+import Search from '../../components/Search';
+
 const Blogs = ({
   blogs,
   categories,
@@ -70,6 +72,7 @@ const Blogs = ({
   return (
     <>
       <Layout>
+        <Search />
         <main>
           <div className="container-fluid">
             <header>

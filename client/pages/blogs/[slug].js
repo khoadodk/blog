@@ -46,6 +46,7 @@ const SingleBlog = ({ blog, query }) => {
   );
 
   const { categories, tags } = blog;
+
   const showBlogCategories = categories =>
     categories.map(e => (
       <Link href={`/categories/${e.slug}`} key={e._id}>
@@ -105,8 +106,11 @@ const SingleBlog = ({ blog, query }) => {
 
                   <div className="lead pt-3 pb-1">
                     <p className="mark">
-                      Written by {blog.postedBy.name} |{' '}
-                      {moment(blog.updatedAt).format('MMM Do YYYY')}
+                      Written by{' '}
+                      <Link href={`/profile/${blog.postedBy.username}`}>
+                        <a>{blog.postedBy.name}</a>
+                      </Link>
+                      | {moment(blog.updatedAt).format('MMM Do YYYY')}
                     </p>
                   </div>
                 </div>

@@ -6,7 +6,6 @@ import NProgress from 'nprogress';
 import { isAuth } from '../helpers/localStogage';
 import { signout } from '../helpers/authFetch';
 import { useRouter } from 'next/router';
-import Search from './Search';
 
 import {
   Collapse,
@@ -124,7 +123,6 @@ const Header = () => {
           </Collapse>
         </Navbar>
       </div>
-      <Search />
     </>
   );
 };

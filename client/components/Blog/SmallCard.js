@@ -4,6 +4,7 @@ import moment from 'moment';
 import { API } from '../../config';
 
 const SmallCard = ({ blog }) => {
+  console.log(blog);
   return (
     <div className="card">
       <section>
@@ -32,7 +33,7 @@ const SmallCard = ({ blog }) => {
 
       <div className="card-body">
         Posted {moment(blog.updatedAt).format('MMM Do YYYY')} by{' '}
-        <Link href={`/`}>
+        <Link href={`/profile/${blog.postedBy.username}`}>
           <a className="float-right btn btn-light">{blog.postedBy.name}</a>
         </Link>
       </div>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { API } from '../config';
 
 import { listSearch } from '../helpers/blogFetch';
 
@@ -27,7 +26,7 @@ const Search = () => {
     e.preventDefault();
 
     listSearch({ search }).then(data => {
-      console.log(data);
+      //   console.log(data);
       setValues({
         ...values,
         results: data,
