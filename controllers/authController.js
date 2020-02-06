@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Blog = require('../models/blog');
 const shortId = require('shortid');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
@@ -85,5 +86,19 @@ exports.signin = (req, res) => {
 
     const { _id, name, email, role, username } = user;
     return res.json({ token, user: { _id, username, name, email, role } });
+  });
+};
+
+//Authorize user to update and delete their blogs.
+exports.canUpdateDeleteBlog = (req, res, next) => {
+  const slug = req.params.slug.toLowerCase();
+  Blog.findOne({ slug: slug }).exec((err, data) => {
+    if (err) return res.status(400).json({ error: 'Server error!' });
+    //Check if author id is correct with the profile in the authMiddleware
+    let authorizedUser =
+      data.postedBy._id.toString() === req.profile._id.toString();
+    if (!authorizedUser)
+      return res.status(400).json({ error: 'Unauthorized!' });
+    next();
   });
 };

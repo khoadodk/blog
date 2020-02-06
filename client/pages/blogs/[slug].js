@@ -82,11 +82,12 @@ const SingleBlog = ({ blog, query }) => {
           <article>
             <div className="container-fluid m-0 p-0">
               {/* photo */}
-              <section>
+              <section className="text-center pt-2">
                 <img
                   src={`${API}/blog/photo/${blog.slug}`}
                   alt={blog.title}
                   className="img img-fluid featured-image"
+                  style={{ height: '25%', width: '25%' }}
                 />
               </section>
 

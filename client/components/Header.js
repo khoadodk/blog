@@ -110,6 +110,17 @@ const Header = () => {
                 </NavItem>
               )}
 
+              <NavItem>
+                <NavLink>
+                  <a
+                    className="btn btn-outline-info pr-1 pl-1 pt-0 pb-0"
+                    href="/user/crud/blog"
+                  >
+                    Write a Blog
+                  </a>
+                </NavLink>
+              </NavItem>
+
               {isAuth() && (
                 <NavItem>
                   <NavLink

@@ -60,7 +60,7 @@ const Card = ({ blog }) => {
           <section>
             <div className="pb-3"> {renderHTML(blog.excerpt)}...</div>
             <Link href={`/blogs/${blog.slug}`}>
-              <a className="btn btn-primary pt-2">Read more</a>
+              <a className="btn btn-primary pt-2 float-right">Read more</a>
             </Link>
           </section>
         </div>

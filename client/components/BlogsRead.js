@@ -5,17 +5,19 @@ import moment from 'moment';
 import { getCookie, isAuth } from '../helpers/localStogage';
 import { listAll, removeBlog } from '../helpers/blogFetch';
 
-const BlogsRead = () => {
+const BlogsRead = ({ username }) => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
 
   const token = getCookie('token');
 
   const loadAllBlogs = () => {
-    listAll().then(data => {
+    listAll(username).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
+        setLoading(false);
         setBlogs(data);
       }
     });
@@ -73,10 +75,22 @@ const BlogsRead = () => {
         {showUpdateButton(blog)}
       </div>
     ));
+
+  const showLoading = () =>
+    blogs.length === 0 &&
+    loading == true && (
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    );
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12">
+          {showLoading()}
           {message && (
             <div className="alert alert-success text-center">{message}</div>
           )}

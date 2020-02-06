@@ -101,7 +101,7 @@ const BlogCreate = ({ router }) => {
           ...values,
           title: '',
           error: '',
-          success: `The blog with title of ${data.title} is created`
+          success: `The blog with title of '${data.title}' is created`
         });
         setBody('');
         setCategories([]);
@@ -229,14 +229,12 @@ const BlogCreate = ({ router }) => {
             <hr />
             <small className="text-muted">Max size 1 Mb</small>
             <label className="btn btn-outline-info">
-              Upload image
               <input
                 className="text-primary"
                 onChange={handleChange('photo')}
                 type="file"
                 name="photo"
                 accept="image/*"
-                hidden
               />
             </label>
           </div>

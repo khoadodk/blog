@@ -16,15 +16,11 @@ const UserPage = () => {
                     <a>Update Profile</a>
                   </Link>
                 </li>
-                {/* <li className="list-group-item">
-                  <a href="/user/crud/blog">Create Blogs</a>
-                </li>
                 <li className="list-group-item">
                   <Link href="/user/crud/blogs">
-                    <a>Manage Blogs</a>
+                    <a>Manage Your Blogs</a>
                   </Link>
                 </li>
-                */}
               </ul>
             </div>
             <div className="col-md-8">right</div>

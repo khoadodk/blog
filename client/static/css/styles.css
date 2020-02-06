@@ -21,6 +21,8 @@ body {
 a:hover {
   cursor: pointer;
 }
+
+/* Navbar/Header */
 .nav-link,
 .navbar-brand {
   color: white !important;
@@ -28,6 +30,7 @@ a:hover {
 
 .active {
   color: #007bff !important;
+  border-bottom: 1px solid;
 }
 
 /* Blog body area */
