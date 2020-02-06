@@ -1,13 +1,32 @@
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import PrivateRoute from '../../components/PrivateRoute';
+import { isAuth } from '../../helpers/localStogage';
+import { API } from '../../config';
 
 const UserPage = () => {
+  const { name, email, role, username } = isAuth();
+  console.log(isAuth());
+  const userInfo = () => {
+    return (
+      <div className="card mb-5">
+        <h3 className="card-header">Profile</h3>
+        <ul className="list-group">
+          <li className="list-group-item">Name:&nbsp;{name}</li>
+          <li className="list-group-item">Email:&nbsp;{email}</li>
+          <li className="list-group-item">
+            Role:&nbsp;{role === 1 ? 'Admin' : 'Registered User'}
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <Layout>
       <PrivateRoute>
         <h1 className="title">User Dashboard</h1>
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-md-4">
               <ul className="list-group">
@@ -23,7 +42,15 @@ const UserPage = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-md-8">right</div>
+            <div className="col-md-4">{userInfo()}</div>
+            <div className="col-md-4">
+              <img
+                src={`${API}/user/photo/${username}`}
+                className="img img-fluid img-thumbnail mb-3"
+                style={{ maxHeight: 'auto', maxWidth: '100%' }}
+                alt="profile photo"
+              />
+            </div>
           </div>
         </div>
       </PrivateRoute>
