@@ -7,6 +7,7 @@ import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import { singleBlog, listRelated } from '../../helpers/blogFetch';
 import Layout from '../../components/Layout';
 import SmallCard from '../../components/Blog/SmallCard';
+import DisqusThread from '../../components/DisqusThread';
 
 const SingleBlog = ({ blog, query, statusCode }) => {
   const [related, setRelated] = useState([]);
@@ -83,6 +84,16 @@ const SingleBlog = ({ blog, query, statusCode }) => {
       </div>
     ));
 
+  const showComments = () => (
+    <div>
+      <DisqusThread
+        id={blog._id}
+        title={blog.title}
+        path={`/blog/${blog.slug}`}
+      />
+    </div>
+  );
+
   return (
     <>
       <Layout>
@@ -138,6 +149,9 @@ const SingleBlog = ({ blog, query, statusCode }) => {
                 <h4 className="text-center h2">Related Blogs</h4>
                 <div className="row">{showRelatedBlogs()}</div>
               </div>
+
+              {/* show Comments */}
+              <div className="container pb-5">{showComments()}</div>
             </div>
           </article>
         </main>
