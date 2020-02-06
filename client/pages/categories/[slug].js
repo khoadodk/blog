@@ -8,7 +8,7 @@ import { getSingleCategory } from '../../helpers/categoryFetch';
 import Layout from '../../components/Layout';
 import Card from '../../components/Blog/Card';
 
-const Category = ({ category, blogs, query }) => {
+const Category = ({ category, blogs, query, statusCode }) => {
   // const head = () => (
   //   <Head>
   //     <title>
@@ -40,6 +40,15 @@ const Category = ({ category, blogs, query }) => {
   //     <meta property="fb:app_id" content={`${FB_APP_ID}`} />
   //   </Head>
   // );
+
+  if (statusCode === 404) {
+    return (
+      <div className="text-center">
+        <h1>Oops</h1>
+        <p>There is no category with that name</p>
+      </div>
+    );
+  }
   return (
     <>
       {/* {head()} */}
@@ -66,7 +75,11 @@ const Category = ({ category, blogs, query }) => {
 
 Category.getInitialProps = async ({ query }) => {
   const data = await getSingleCategory(query.slug);
-  return { category: data.category, blogs: data.blogs, query };
+  if (!data) {
+    return { statusCode: 404 };
+  } else {
+    return { category: data.category, blogs: data.blogs, query };
+  }
 };
 
 export default Category;

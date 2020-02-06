@@ -4,7 +4,6 @@ import moment from 'moment';
 import { API } from '../../config';
 
 const SmallCard = ({ blog }) => {
-  console.log(blog);
   return (
     <div className="card">
       <section>

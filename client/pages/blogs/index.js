@@ -13,12 +13,22 @@ const Blogs = ({
   tags,
   blogLimit,
   blogSkip,
-  totalBlogs
+  totalBlogs,
+  statusCode
 }) => {
   const [limit, setLimit] = useState(blogLimit);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(totalBlogs);
   const [loadBlogs, setLoadBlogs] = useState([]);
+
+  if (statusCode === 404) {
+    return (
+      <div className="text-center">
+        <h1>Oops</h1>
+        <p>There is no blog</p>
+      </div>
+    );
+  }
   //   console.log('limit', limit);
   //   console.log('skip', skip);
   //   console.log('size', size);
@@ -74,7 +84,7 @@ const Blogs = ({
       <Layout>
         <Search />
         <main>
-          <div className="container-fluid">
+          <div className="container">
             <header>
               <div className="col-md-12 pt-3">
                 <h1 className="title">Programming Blog and Tutorials</h1>
@@ -87,9 +97,9 @@ const Blogs = ({
               </section>
             </header>
           </div>
-          <div className="container-fluid">{showAllBlogs()}</div>
-          <div className="container-fluid">{showLoadBlogs()}</div>
-          <div className="container-fluid pt-3 pb-3 text-center">
+          <div className="container">{showAllBlogs()}</div>
+          <div className="container">{showLoadBlogs()}</div>
+          <div className="container pt-3 pb-3 text-center">
             {loadMoreButton()}
           </div>
         </main>
@@ -104,15 +114,18 @@ Blogs.getInitialProps = async function() {
   let skip = 0;
   let limit = 2;
   const data = await listBlogWithCatAndTags(skip, limit);
-
-  return {
-    blogs: data.blogs,
-    categories: data.categories,
-    tags: data.tags,
-    totalBlogs: data.size,
-    blogLimit: limit,
-    blogSkip: skip
-  };
+  if (!data) {
+    return { statusCode: 404 };
+  } else {
+    return {
+      blogs: data.blogs,
+      categories: data.categories,
+      tags: data.tags,
+      totalBlogs: data.size,
+      blogLimit: limit,
+      blogSkip: skip
+    };
+  }
 };
 
 export default Blogs;

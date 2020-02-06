@@ -8,8 +8,17 @@ import { singleBlog, listRelated } from '../../helpers/blogFetch';
 import Layout from '../../components/Layout';
 import SmallCard from '../../components/Blog/SmallCard';
 
-const SingleBlog = ({ blog, query }) => {
+const SingleBlog = ({ blog, query, statusCode }) => {
   const [related, setRelated] = useState([]);
+
+  if (statusCode === 404) {
+    return (
+      <div className="text-center">
+        <h1>Oops</h1>
+        <p>There is no blog with that name</p>
+      </div>
+    );
+  }
 
   useEffect(() => {
     listRelated({ blog }).then(data => {
@@ -125,9 +134,9 @@ const SingleBlog = ({ blog, query }) => {
               </div>
 
               {/* Realated Blogs */}
-              <div className="container pb-5 pt-5">
+              <div className="container pb-5 pt-3">
                 <h4 className="text-center h2">Related Blogs</h4>
-                <div>{showRelatedBlogs()}</div>
+                <div className="row">{showRelatedBlogs()}</div>
               </div>
             </div>
           </article>
@@ -139,8 +148,15 @@ const SingleBlog = ({ blog, query }) => {
 
 SingleBlog.getInitialProps = async ({ query }) => {
   //query refering to router
+
   const data = await singleBlog(query.slug);
-  return { blog: data, query };
+  if (!data) {
+    return {
+      statusCode: 404
+    };
+  } else {
+    return { blog: data, query };
+  }
 };
 
 export default SingleBlog;

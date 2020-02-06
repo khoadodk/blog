@@ -8,7 +8,15 @@ import { getSingletag } from '../../helpers/tagsFetch';
 import Layout from '../../components/Layout';
 import Card from '../../components/Blog/Card';
 
-const Tag = ({ tag, blogs, query }) => {
+const Tag = ({ tag, blogs, query, statusCode }) => {
+  if (statusCode === 404) {
+    return (
+      <div className="text-center">
+        <h1>Oops</h1>
+        <p>There is no tag with that name</p>
+      </div>
+    );
+  }
   const head = () => (
     <Head>
       <title>
@@ -66,7 +74,11 @@ const Tag = ({ tag, blogs, query }) => {
 
 Tag.getInitialProps = async ({ query }) => {
   const data = await getSingletag(query.slug);
-  return { tag: data.tag, blogs: data.blogs, query };
+  if (!data) {
+    return { statusCode: 404 };
+  } else {
+    return { tag: data.tag, blogs: data.blogs, query };
+  }
 };
 
 export default Tag;

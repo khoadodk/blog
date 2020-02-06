@@ -3,8 +3,18 @@ import Link from 'next/link';
 import moment from 'moment';
 import { userPublicProfile } from '../../helpers/userFetch';
 import Layout from '../../components/Layout';
+import { API } from '../../config';
 
-const UserProfile = ({ user, blogs }) => {
+const UserProfile = ({ user, blogs, statusCode }) => {
+  if (statusCode === 404) {
+    return (
+      <div className="text-center">
+        <h1>Oops</h1>
+        <p>There is no user with that name</p>
+      </div>
+    );
+  }
+
   const showUserBlogs = () => (
     <div>
       {blogs.map(blog => (
@@ -25,12 +35,21 @@ const UserProfile = ({ user, blogs }) => {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body">
-                  <h5>{user.name}</h5>
-                  <Link href="">
-                    <a>View Profile</a>
-                  </Link>
-                  <div className="text-muted">
-                    Join on: {moment(user.createdAt).format('MMM Do YYYY')}
+                  <div className="row">
+                    <div className="col-md-8">
+                      <h5>{user.name}</h5>
+                      <p className="text-muted">
+                        Join on: {moment(user.createdAt).format('MMM Do YYYY')}
+                      </p>
+                    </div>
+                    <div className="col-md-4">
+                      <img
+                        src={`${API}/user/photo/${user.username}`}
+                        className="img img-fluid img-thumbnail mb-3"
+                        style={{ maxHeight: '100px', maxWidth: '100%' }}
+                        alt="user profile"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -62,7 +81,11 @@ const UserProfile = ({ user, blogs }) => {
 
 UserProfile.getInitialProps = async ({ query }) => {
   const data = await userPublicProfile(query.username);
-  return { user: data.user, blogs: data.blogs, query };
+  if (!data) {
+    return { statusCode: 404 };
+  } else {
+    return { user: data.user, blogs: data.blogs, query };
+  }
 };
 
 export default UserProfile;
