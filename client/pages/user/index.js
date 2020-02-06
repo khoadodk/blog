@@ -6,7 +6,7 @@ import { API } from '../../config';
 
 const UserPage = () => {
   const { name, email, role, username } = isAuth();
-  console.log(isAuth());
+  // console.log(isAuth());
   const userInfo = () => {
     return (
       <div className="card mb-5">

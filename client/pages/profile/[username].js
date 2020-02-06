@@ -4,6 +4,7 @@ import moment from 'moment';
 import { userPublicProfile } from '../../helpers/userFetch';
 import Layout from '../../components/Layout';
 import { API } from '../../config';
+import ContactForm from '../../components/ContactForm';
 
 const UserProfile = ({ user, blogs, statusCode }) => {
   if (statusCode === 404) {
@@ -70,7 +71,7 @@ const UserProfile = ({ user, blogs, statusCode }) => {
                 Message to {user.name}
               </div>
 
-              <p>contact</p>
+              <ContactForm authorEmail={user.email} />
             </div>
           </div>
         </div>

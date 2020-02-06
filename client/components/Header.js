@@ -86,6 +86,16 @@ const Header = () => {
                 </React.Fragment>
               )}
 
+              <NavItem>
+                <Link href="/contact">
+                  <NavLink
+                    className={router.pathname == '/contact' ? 'active' : ''}
+                  >
+                    Contact Us
+                  </NavLink>
+                </Link>
+              </NavItem>
+
               {isAuth() && isAuth().role === 0 && (
                 <NavItem>
                   <Link href="/user">
