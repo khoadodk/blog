@@ -10,7 +10,6 @@ import { singleBlog, updateBlog } from '../helpers/blogFetch';
 import { QuillModules, QuillFormats } from '../helpers/quill';
 import { API } from '../config';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import '../node_modules/react-quill/dist/quill.snow.css';
 
 const BlogUpdate = ({ router }) => {
   const [body, setBody] = useState('');
