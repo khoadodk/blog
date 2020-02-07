@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import { withRouter } from 'next/router';
 import { getCookie, isAuth } from '../helpers/localStogage';
@@ -9,7 +7,6 @@ import { getTags } from '../helpers/tagsFetch';
 import { create } from '../helpers/blogFetch';
 import { QuillModules, QuillFormats } from '../helpers/quill';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import '../node_modules/react-quill/dist/quill.snow.css';
 
 const BlogCreate = ({ router }) => {
   //Load the body from the localstorage
