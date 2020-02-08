@@ -5,10 +5,10 @@ export const emailContactForm = data => {
   let emailEndpoint;
   //Author Endpoint
   if (data.authorEmail) {
-    emailEndpoint = `${process.env.API}/contact-blog-author`;
+    emailEndpoint = `${API}/contact-blog-author`;
   } else {
     //Admin endpoint
-    emailEndpoint = `${process.env.API}/contact`;
+    emailEndpoint = `${API}/contact`;
   }
   // console.log(data);
 

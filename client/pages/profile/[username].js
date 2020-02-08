@@ -3,7 +3,7 @@ import Link from 'next/link';
 import moment from 'moment';
 import { userPublicProfile } from '../../helpers/userFetch';
 import Layout from '../../components/Layout';
-// import { API } from '../../config';
+import { API } from '../../config';
 import ContactForm from '../../components/ContactForm';
 
 const UserProfile = ({ user, blogs, statusCode }) => {
@@ -45,7 +45,7 @@ const UserProfile = ({ user, blogs, statusCode }) => {
                     </div>
                     <div className="col-md-4">
                       <img
-                        src={`${process.env.API}/user/photo/${user.username}`}
+                        src={`${API}/user/photo/${user.username}`}
                         className="img img-fluid img-thumbnail mb-3"
                         style={{ maxHeight: '100px', maxWidth: '100%' }}
                         alt="user profile"

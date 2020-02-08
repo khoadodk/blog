@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { listBlogWithCatAndTags } from '../../helpers/blogFetch';
@@ -112,17 +113,7 @@ const Blogs = ({
 Blogs.getInitialProps = async function() {
   let skip = 0;
   let limit = 2;
-  console.log('process.env.API', process.env.API);
-  // const data = await listBlogWithCatAndTags(skip, limit);
-  const res = await fetch(`${process.env.API}/blogs-categories-tags`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ skip, limit })
-  });
-  const data = await res.json();
+  const data = await listBlogWithCatAndTags(skip, limit);
   if (!data) {
     return { statusCode: 404 };
   } else {

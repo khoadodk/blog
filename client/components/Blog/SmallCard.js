@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
-// import { API } from '../../config';
+import { API } from '../../config';
 
 const SmallCard = ({ blog }) => {
   return (
@@ -12,7 +12,7 @@ const SmallCard = ({ blog }) => {
             <img
               className="img img-fluid"
               style={{ maxHeight: 'auto', width: '100%' }}
-              src={`${process.env.API}/blog/photo/${blog.slug}`}
+              src={`${API}/blog/photo/${blog.slug}`}
               alt={blog.title}
             />
           </a>

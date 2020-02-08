@@ -2,7 +2,7 @@ import Layout from '../../components/Layout';
 import AdminRoute from '../../components/AdminRoute';
 import Link from 'next/link';
 import { isAuth } from '../../helpers/localStogage';
-// import { API } from '../../config';
+import { API } from '../../config';
 import dynamic from 'next/dynamic';
 
 const AdminPage = () => {
@@ -55,7 +55,7 @@ const AdminPage = () => {
               <div className="col-md-4">{adminInfo()}</div>
               <div className="col-md-4">
                 <img
-                  src={`${process.env.API}/user/photo/${username}`}
+                  src={`${API}/user/photo/${username}`}
                   className="img img-fluid img-thumbnail mb-3"
                   style={{ maxHeight: 'auto', maxWidth: '100%' }}
                   alt="profile photo"

@@ -1,8 +1,8 @@
-// import { API } from '../config';
+import { API } from '../config';
 import fetch from 'isomorphic-fetch';
 
 export const getCategories = () => {
-  return fetch(`${process.env.API}/categories`, {
+  return fetch(`${API}/categories`, {
     method: 'GET'
   })
     .then(response => {
@@ -14,7 +14,7 @@ export const getCategories = () => {
 };
 
 export const getSingleCategory = slug => {
-  return fetch(`${process.env.API}/category/${slug}`, {
+  return fetch(`${API}/category/${slug}`, {
     method: 'GET'
   })
     .then(response => {
@@ -26,7 +26,7 @@ export const getSingleCategory = slug => {
 };
 
 export const create = (category, token) => {
-  return fetch(`${process.env.API}/category`, {
+  return fetch(`${API}/category`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -44,7 +44,7 @@ export const create = (category, token) => {
 };
 
 export const removeCategory = (slug, token) => {
-  return fetch(`${process.env.API}/category/${slug}`, {
+  return fetch(`${API}/category/${slug}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',

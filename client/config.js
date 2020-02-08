@@ -1,29 +1,18 @@
-// import getConfig from 'next/config';
-// const { publicRuntimeConfig } = getConfig();
-// console.log(process.env.NODE_ENV);
-// console.log(process.env);
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
-// export let API;
-// if (process.env.NODE_ENV === 'development') {
-//   API = process.env.API_DEVELOPMENT;
-// } else if (process.env.NODE_ENV === 'production') {
-//   API = process.env.API_PRODUCTION;
-// }
-// console.log(API);
+export const API = publicRuntimeConfig.PRODUCTION
+  ? publicRuntimeConfig.API_PRODUCTION
+  : publicRuntimeConfig.API_DEVELOPMENT;
 
-// export let DOMAIN;
-// if (process.env.NODE_ENV === 'development') {
-//   DOMAIN = process.env.DOMAIN_DEVELOPMENT;
-// } else if (process.env.NODE_ENV === 'production') {
-//   DOMAIN = process.env.DOMAIN_PRODUCTION;
-// }
+export const DOMAIN = publicRuntimeConfig.PRODUCTION
+  ? publicRuntimeConfig.DOMAIN_PRODUCTION
+  : publicRuntimeConfig.DOMAIN_DEVELOPMENT;
 
-// console.log(DOMAIN);
+export const APP_NAME = process.env.APP_NAME;
 
-// export const APP_NAME = process.env.APP_NAME;
+export const FB_APP_ID = process.env.FB_APP_ID;
 
-// export const FB_APP_ID = process.env.FB_APP_ID;
+export const DISQUS_SHORTNAME = process.env.DISQUS_SHORTNAME;
 
-// export const DISQUS_SHORTNAME = process.env.DISQUS_SHORTNAME;
-
-// export const SENDGRID_API = process.env.SENDGRID_API;
+export const SENDGRID_API = process.env.SENDGRID_API;

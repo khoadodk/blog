@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { APP_NAME } from '../config';
+import { APP_NAME } from '../config';
 import Router from 'next/router';
 import Link from 'next/link';
 import NProgress from 'nprogress';
@@ -43,7 +43,7 @@ const Header = () => {
       <div className="bg-dark">
         <Navbar expand="md">
           <NavbarBrand href="/">
-            {process.env.APP_NAME}
+            {APP_NAME}
             &nbsp;<i className="fab fa-blogger-b"></i>
           </NavbarBrand>
           <NavbarToggler onClick={toggle} className="navbar-dark" />

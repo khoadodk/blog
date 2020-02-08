@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
-// import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import { singleBlog, listRelated } from '../../helpers/blogFetch';
 import Layout from '../../components/Layout';
 import SmallCard from '../../components/Blog/SmallCard';
@@ -35,35 +35,23 @@ const SingleBlog = ({ blog, query, statusCode }) => {
   const head = () => (
     <Head>
       <title>
-        {blog.title} | {process.env.APP_NAME}
+        {blog.title} | {APP_NAME}
       </title>
       <meta name="description" content={blog.mdesc} />
-      <link
-        rel="canonical"
-        href={`${process.env.DOMAIN}/blogs/${query.slug}`}
-      />
-      <meta
-        property="og:title"
-        content={`${blog.title}| ${process.env.APP_NAME}`}
-      />
+      <link rel="canonical" href={`${DOMAIN}/blogs/${query.slug}`} />
+      <meta property="og:title" content={`${blog.title}| ${APP_NAME}`} />
       <meta property="og:description" content={blog.mdesc} />
       <meta property="og:type" content="webiste" />
-      <meta
-        property="og:url"
-        content={`${process.env.DOMAIN}/blogs/${query.slug}`}
-      />
-      <meta property="og:site_name" content={`${process.env.APP_NAME}`} />
+      <meta property="og:url" content={`${DOMAIN}/blogs/${query.slug}`} />
+      <meta property="og:site_name" content={`${APP_NAME}`} />
 
-      <meta
-        property="og:image"
-        content={`${process.env.API}/blog/photo/${blog.slug}`}
-      />
+      <meta property="og:image" content={`${API}/blog/photo/${blog.slug}`} />
       <meta
         property="og:image:secure_url"
-        content={`${process.env.API}/blog/photo/${blog.slug}`}
+        content={`${API}/blog/photo/${blog.slug}`}
       />
       <meta property="og:image:type" content="image/jpg" />
-      <meta property="fb:app_id" content={`${process.env.FB_APP_ID}`} />
+      <meta property="fb:app_id" content={`${FB_APP_ID}`} />
     </Head>
   );
 
@@ -116,7 +104,7 @@ const SingleBlog = ({ blog, query, statusCode }) => {
               {/* photo */}
               <section className="text-center pt-2">
                 <img
-                  src={`${process.env.API}/blog/photo/${blog.slug}`}
+                  src={`${API}/blog/photo/${blog.slug}`}
                   alt={blog.title}
                   className="img img-fluid featured-image"
                   style={{ height: '25%', width: '25%' }}
