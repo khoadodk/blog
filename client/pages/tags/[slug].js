@@ -62,10 +62,10 @@ const Tag = ({ tag, blogs, query, statusCode }) => {
       {head()}
       <Layout>
         <main>
-          <div className="container-fluid text-center">
+          <div className="container-fluid">
             <header>
               <div className="col-md-12 pt-3">
-                <h1 className="display-4">Tag: {tag.name}</h1>
+                <h1 className="display-4 text-center">Tag: {tag.name}</h1>
                 {blogs.map(b => (
                   <div key={b._id}>
                     <Card blog={b} />
