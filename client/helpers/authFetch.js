@@ -1,7 +1,7 @@
 // Work on both client and server side
-// import { API } from '../config';
 import fetch from 'isomorphic-fetch';
 import { removeCookie, removeLocalStorage } from './localStogage';
+// import { API } from '../config';
 
 export const signup = user => {
   return fetch(`${process.env.API}/register`, {

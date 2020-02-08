@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch';
 import queryString from 'query-string';
 import { isAuth } from './localStogage';
 
+console.log('process.env.API', process.env.API);
+
 export const create = (blog, token) => {
   let createBlogEndpoint;
   if (isAuth() && isAuth().role === 1) {

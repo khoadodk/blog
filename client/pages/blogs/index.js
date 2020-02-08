@@ -4,7 +4,6 @@ import Layout from '../../components/Layout';
 import { listBlogWithCatAndTags } from '../../helpers/blogFetch';
 
 import Card from '../../components/Blog/Card';
-
 import Search from '../../components/Search';
 
 const Blogs = ({
