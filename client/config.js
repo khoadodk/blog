@@ -1,15 +1,19 @@
 // import getConfig from 'next/config';
 // const { publicRuntimeConfig } = getConfig();
+console.log(process.env.NODE_ENV);
+export let API;
+if (process.env.NODE_ENV === 'development') {
+  API = process.env.API_DEVELOPMENT;
+} else {
+  API = process.env.API_PRODUCTION;
+}
 
-export const API =
-  process.env.NODE_ENV === 'development'
-    ? process.env.API_DEVELOPMENT
-    : process.env.API_PRODUCTION;
-
-export const DOMAIN =
-  process.env.NODE_ENV === 'development'
-    ? process.env.DOMAIN_DEVELOPMENT
-    : process.env.DOMAIN_PRODUCTION;
+export let DOMAIN;
+if (process.env.NODE_ENV === 'development') {
+  DOMAIN = process.env.DOMAIN_DEVELOPMENT;
+} else {
+  DOMAIN = process.env.DOMAIN_PRODUCTION;
+}
 
 export const APP_NAME = process.env.APP_NAME;
 
