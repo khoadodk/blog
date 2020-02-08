@@ -1,8 +1,8 @@
-import { API } from '../config';
+// import { API } from '../config';
 import fetch from 'isomorphic-fetch';
 
 export const getTags = () => {
-  return fetch(`${API}/tags`, {
+  return fetch(`${process.env.API}/tags`, {
     method: 'GET'
   })
     .then(response => {
@@ -14,7 +14,7 @@ export const getTags = () => {
 };
 
 export const getSingletag = slug => {
-  return fetch(`${API}/tag/${slug}`, {
+  return fetch(`${process.env.API}/tag/${slug}`, {
     method: 'GET'
   })
     .then(response => {
@@ -26,7 +26,7 @@ export const getSingletag = slug => {
 };
 
 export const create = (tag, token) => {
-  return fetch(`${API}/tag`, {
+  return fetch(`${process.env.API}/tag`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -44,7 +44,7 @@ export const create = (tag, token) => {
 };
 
 export const removeTag = (slug, token) => {
-  return fetch(`${API}/tag/${slug}`, {
+  return fetch(`${process.env.API}/tag/${slug}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',

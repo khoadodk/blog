@@ -8,7 +8,7 @@ import { getCategories } from '../helpers/categoryFetch';
 import { getTags } from '../helpers/tagsFetch';
 import { singleBlog, updateBlog } from '../helpers/blogFetch';
 import { QuillModules, QuillFormats } from '../helpers/quill';
-import { API } from '../config';
+// import { API } from '../config';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const BlogUpdate = ({ router }) => {
@@ -242,7 +242,7 @@ const BlogUpdate = ({ router }) => {
 
           {body && (
             <img
-              src={`${API}/blog/photo/${router.query.slug}`}
+              src={`${process.env.API}/blog/photo/${router.query.slug}`}
               alt={title}
               style={{ width: '100%', paddingTop: '10px' }}
             />

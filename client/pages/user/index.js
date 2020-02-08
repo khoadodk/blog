@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import PrivateRoute from '../../components/PrivateRoute';
 import { isAuth } from '../../helpers/localStogage';
-import { API } from '../../config';
+// import { API } from '../../config';
 import dynamic from 'next/dynamic';
 
 const UserPage = () => {
@@ -47,7 +47,7 @@ const UserPage = () => {
               <div className="col-md-4">{userInfo()}</div>
               <div className="col-md-4">
                 <img
-                  src={`${API}/user/photo/${username}`}
+                  src={`${process.env.API}/user/photo/${username}`}
                   className="img img-fluid img-thumbnail mb-3"
                   style={{ maxHeight: 'auto', maxWidth: '100%' }}
                   alt="profile photo"

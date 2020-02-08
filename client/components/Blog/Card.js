@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import moment from 'moment';
-import { API } from '../../config';
+// import { API } from '../../config';
 import renderHTML from 'react-render-html';
 
 const Card = ({ blog }) => {
@@ -49,7 +49,7 @@ const Card = ({ blog }) => {
         <div className="col-md-4 d-flex justify-content-center">
           <section>
             <img
-              src={`${API}/blog/photo/${blog.slug}`}
+              src={`${process.env.API}/blog/photo/${blog.slug}`}
               alt={`${blog.title}`}
               className="img img-fluid "
               style={{ maxHeight: '150px', width: 'auto' }}

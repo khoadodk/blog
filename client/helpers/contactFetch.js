@@ -1,16 +1,16 @@
 import fetch from 'isomorphic-fetch';
-import { API } from '../config';
+// import { API } from '../config';
 
 export const emailContactForm = data => {
   let emailEndpoint;
   //Author Endpoint
   if (data.authorEmail) {
-    emailEndpoint = `${API}/contact-blog-author`;
+    emailEndpoint = `${process.env.API}/contact-blog-author`;
   } else {
     //Admin endpoint
-    emailEndpoint = `${API}/contact`;
+    emailEndpoint = `${process.env.API}/contact`;
   }
-  console.log(data);
+  // console.log(data);
 
   return fetch(`${emailEndpoint}`, {
     method: 'POST',

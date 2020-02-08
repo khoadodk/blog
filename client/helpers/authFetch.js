@@ -1,10 +1,10 @@
 // Work on both client and server side
-import { API } from '../config';
+// import { API } from '../config';
 import fetch from 'isomorphic-fetch';
 import { removeCookie, removeLocalStorage } from './localStogage';
 
 export const signup = user => {
-  return fetch(`${API}/register`, {
+  return fetch(`${process.env.API}/register`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -21,7 +21,7 @@ export const signup = user => {
 };
 
 export const signin = user => {
-  return fetch(`${API}/signin`, {
+  return fetch(`${process.env.API}/signin`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

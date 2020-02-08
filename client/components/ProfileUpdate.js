@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API } from '../config';
+// import { API } from '../config';
 import { getProfile, updateProfile } from '../helpers/userFetch';
 import { getCookie, updateUserLocalStorage } from '../helpers/localStogage';
 
@@ -184,14 +184,12 @@ const ProfileUpdate = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            {photo && (
-              <img
-                src={`${API}/user/photo/${username}`}
-                className="img img-fluid img-thumbnail mb-3"
-                style={{ maxHeight: 'auto', maxWidth: '100%' }}
-                alt="user profile"
-              />
-            )}
+            <img
+              src={`${process.env.API}/user/photo/${username}`}
+              className="img img-fluid img-thumbnail mb-3"
+              style={{ maxHeight: 'auto', maxWidth: '100%' }}
+              alt="user profile"
+            />
           </div>
           <div className="col-md-8 mb-5">
             {showSuccess()}

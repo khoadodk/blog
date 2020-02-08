@@ -1,8 +1,8 @@
-import { API } from '../config';
+// import { API } from '../config';
 import fetch from 'isomorphic-fetch';
 
 export const userPublicProfile = username => {
-  return fetch(`${API}/user/${username}`, {
+  return fetch(`${process.env.API}/user/${username}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json'
@@ -17,7 +17,7 @@ export const userPublicProfile = username => {
 };
 
 export const getProfile = token => {
-  return fetch(`${API}/user/profile`, {
+  return fetch(`${process.env.API}/user/profile`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -33,7 +33,7 @@ export const getProfile = token => {
 };
 
 export const updateProfile = (token, updatedUser) => {
-  return fetch(`${API}/user/update`, {
+  return fetch(`${process.env.API}/user/update`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',

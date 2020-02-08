@@ -1,8 +1,8 @@
 import React from 'react';
-import { DISQUS_SHORTNAME, DOMAIN } from '../config';
+// import { DISQUS_SHORTNAME, DOMAIN } from '../config';
 
-const SHORTNAME = DISQUS_SHORTNAME;
-const WEBSITE_URL = DOMAIN;
+const SHORTNAME = process.env.DISQUS_SHORTNAME;
+const WEBSITE_URL = process.env.DOMAIN;
 
 function renderDisqus() {
   if (window.DISQUS === undefined) {
