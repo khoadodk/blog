@@ -7,6 +7,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   API = process.env.API_PRODUCTION;
 }
+console.log(API);
 
 export let DOMAIN;
 if (process.env.NODE_ENV === 'development') {
@@ -14,6 +15,8 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   DOMAIN = process.env.DOMAIN_PRODUCTION;
 }
+
+console.log(DOMAIN);
 
 export const APP_NAME = process.env.APP_NAME;
 
