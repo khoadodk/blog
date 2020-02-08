@@ -112,7 +112,17 @@ const Blogs = ({
 Blogs.getInitialProps = async function() {
   let skip = 0;
   let limit = 2;
-  const data = await listBlogWithCatAndTags(skip, limit);
+  console.log('process.env.API', process.env.API);
+  // const data = await listBlogWithCatAndTags(skip, limit);
+  const res = await fetch(`${process.env.API}/blogs-categories-tags`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ skip, limit })
+  });
+  const data = await res.json();
   if (!data) {
     return { statusCode: 404 };
   } else {
