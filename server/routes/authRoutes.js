@@ -7,9 +7,15 @@ const {
   userSigninValidator
 } = require('../validators/auth');
 //Controller
-const { register, signin } = require('../controllers/authController');
+const {
+  register,
+  signin,
+  googleLogin
+} = require('../controllers/authController');
 
 router.post('/register', userRegisterValidator, runValidation, register);
 router.post('/signin', userSigninValidator, runValidation, signin);
+
+router.post('/google-login', googleLogin);
 
 module.exports = router;

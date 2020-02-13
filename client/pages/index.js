@@ -58,7 +58,7 @@ const Home = () => {
                     className="front"
                     style={{
                       backgroundImage:
-                        'url(' + '/static/images/nodeIcon.png' + ')'
+                        'url(' + '/static/images/nodeicon.png' + ')'
                     }}
                   >
                     <h2 className="text-shadow text-center h1"></h2>

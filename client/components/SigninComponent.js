@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { signin } from '../helpers/authFetch';
 import { authenticate, isAuth } from '../helpers/localStogage';
 import Router from 'next/router';
+import Google from './Google';
 
 const SigninComponent = () => {
   const [values, setValues] = useState({
@@ -91,6 +92,10 @@ const SigninComponent = () => {
     <div>
       {showLoading()}
       {showError()}
+      <div className="text-center mb-2">
+        <Google />
+      </div>
+
       {signInForm()}
     </div>
   );
