@@ -54,6 +54,7 @@ const Blogs = ({
     loadBlogs.map(blog => (
       <article key={blog._id}>
         <Card blog={blog} />
+        <hr />
       </article>
     ));
 
@@ -99,7 +100,7 @@ const Blogs = ({
           </div>
           <div className="container">{showAllBlogs()}</div>
           <div className="container">{showLoadBlogs()}</div>
-          <div className="container pt-3 pb-3 text-center">
+          <div className="container pt-2 pb-5 text-center">
             {loadMoreButton()}
           </div>
         </main>

@@ -4,8 +4,10 @@ const Footer = () => {
       <div className="container-fluid text-white">
         <div className="row">
           <div className="col-6">
-            <p className="mb-0 ">
-              Copyright &copy; 2020 All Rights Reserved by Khoa Do
+            <p className="mb-0">
+              <small>
+                Copyright &copy; 2020 All Rights Reserved by Khoa Do
+              </small>
             </p>
           </div>
           <div className="col-6 d-flex justify-content-center align-items-center">
