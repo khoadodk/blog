@@ -5,10 +5,6 @@ https://github.com/khoadodk/boilerplate-mern-stack
 
 ![Image description](homepage.png)
 
-# Demo
-
-https://blog-khoado.site/
-
 # App features
 
 <ul>

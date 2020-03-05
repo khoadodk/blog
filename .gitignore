@@ -3,3 +3,5 @@ server/.env
 client/node_modules
 client/.next
 client/next.config.js
+credentials.csv
+blog.pem
