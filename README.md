@@ -3,7 +3,7 @@
 This app is the follow up of my boilerplate-MERN:
 https://github.com/khoadodk/boilerplate-mern-stack
 
-![Image description](homepage.png)
+![Image description](https://github.com/khoadodk/blog/blob/master/homepage.PNG)
 
 # App features
 
